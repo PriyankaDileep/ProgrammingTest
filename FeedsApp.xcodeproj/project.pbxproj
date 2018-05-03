@@ -16,6 +16,7 @@
 		72B6D8E0209ACAD100CFF270 /* FeedsAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D8DF209ACAD100CFF270 /* FeedsAppTests.m */; };
 		72B6D8EB209ACAD100CFF270 /* FeedsAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D8EA209ACAD100CFF270 /* FeedsAppUITests.m */; };
 		72B6D906209AF9C000CFF270 /* FAListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D905209AF9C000CFF270 /* FAListViewController.m */; };
+		72B6D90D209B132000CFF270 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D90C209B132000CFF270 /* NSString+Additions.m */; };
 		90EA1C749A26C654107A1442 /* libPods-FeedsApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E012ECA7D674C204B306CB0F /* libPods-FeedsApp.a */; };
 		E5C8956B2FB146D6EF423AA7 /* libPods-FeedsAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBEDB65E063E632EAEEE5765 /* libPods-FeedsAppTests.a */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,8 @@
 		72B6D900209AD01000CFF270 /* FAConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FAConstants.h; sourceTree = "<group>"; };
 		72B6D904209AF9C000CFF270 /* FAListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAListViewController.h; sourceTree = "<group>"; };
 		72B6D905209AF9C000CFF270 /* FAListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAListViewController.m; sourceTree = "<group>"; };
+		72B6D90B209B132000CFF270 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
+		72B6D90C209B132000CFF270 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		9EB9C78E073E40461283BC15 /* libPods-FeedsAppUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FeedsAppUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C788A160C732B2E362749D0B /* Pods-FeedsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedsApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeedsApp/Pods-FeedsApp.release.xcconfig"; sourceTree = "<group>"; };
 		DF9C08F2DD53313598E10461 /* Pods-FeedsAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedsAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeedsAppTests/Pods-FeedsAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,6 +102,8 @@
 			children = (
 				72B6D8C4209ACAD100CFF270 /* FeedsApp */,
 				72B6D8FF209ACEF000CFF270 /* View */,
+				72B6D907209B125200CFF270 /* CustomControls */,
+				72B6D8FE209ACE9700CFF270 /* Resources */,
 				72B6D8DE209ACAD100CFF270 /* FeedsAppTests */,
 				72B6D8E9209ACAD100CFF270 /* FeedsAppUITests */,
 				72B6D8C3209ACAD100CFF270 /* Products */,
@@ -120,7 +125,6 @@
 		72B6D8C4209ACAD100CFF270 /* FeedsApp */ = {
 			isa = PBXGroup;
 			children = (
-				72B6D8FE209ACE9700CFF270 /* Resources */,
 				72B6D8F8209ACDF300CFF270 /* AppDelegate */,
 				72B6D8FD209ACE7F00CFF270 /* Parser */,
 				72B6D8FC209ACE6F00CFF270 /* Manager */,
@@ -212,6 +216,7 @@
 				72B6D8D6209ACAD100CFF270 /* Info.plist */,
 			);
 			name = Resources;
+			path = FeedsApp;
 			sourceTree = "<group>";
 		};
 		72B6D8FF209ACEF000CFF270 /* View */ = {
@@ -221,6 +226,16 @@
 				72B6D8D3209ACAD100CFF270 /* LaunchScreen.storyboard */,
 			);
 			name = View;
+			path = FeedsApp;
+			sourceTree = "<group>";
+		};
+		72B6D907209B125200CFF270 /* CustomControls */ = {
+			isa = PBXGroup;
+			children = (
+				72B6D90B209B132000CFF270 /* NSString+Additions.h */,
+				72B6D90C209B132000CFF270 /* NSString+Additions.m */,
+			);
+			name = CustomControls;
 			path = FeedsApp;
 			sourceTree = "<group>";
 		};
@@ -441,6 +456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72B6D8CA209ACAD100CFF270 /* AppDelegate.m in Sources */,
+				72B6D90D209B132000CFF270 /* NSString+Additions.m in Sources */,
 				72B6D8C7209ACAD100CFF270 /* main.m in Sources */,
 				72B6D906209AF9C000CFF270 /* FAListViewController.m in Sources */,
 			);
@@ -680,6 +696,7 @@
 				72B6D8F1209ACAD100CFF270 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		72B6D8F2209ACAD100CFF270 /* Build configuration list for PBXNativeTarget "FeedsAppTests" */ = {
 			isa = XCConfigurationList;
@@ -688,6 +705,7 @@
 				72B6D8F4209ACAD100CFF270 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		72B6D8F5209ACAD100CFF270 /* Build configuration list for PBXNativeTarget "FeedsAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -696,6 +714,7 @@
 				72B6D8F7209ACAD100CFF270 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

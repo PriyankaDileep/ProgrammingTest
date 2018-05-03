@@ -14,5 +14,8 @@
 
 @property (strong, nonatomic) UINavigationController *navigationController; //-- Applicataio Main Navigation Controller
 
+//-- A function to display alert
+- (void)displayAnAlertWith:(NSString *)title andMessage:(NSString *)message;
+
 @end
 

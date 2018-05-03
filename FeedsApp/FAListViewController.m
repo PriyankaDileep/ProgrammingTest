@@ -8,16 +8,19 @@
 
 #import "FAListViewController.h"
 #import "FAConstants.h"
+#import "NSString+Additions.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "AppDelegate.h"
 
 @interface FAListViewController ()
 @property(strong, nonatomic) UIRefreshControl *refreshController;
-@property(strong, nonatomic) NSArray *arrFacts;
+@property(strong, nonatomic) NSArray *arrFeeds;
 @property(strong, nonatomic) NSOperationQueue *operationQueue;
 @end
 
 @implementation FAListViewController
 @synthesize refreshController = _refreshController;
-@synthesize arrFacts = _arrFacts;
+@synthesize arrFeeds = _arrFeeds;
 @synthesize operationQueue = _operationQueue;
 
 #pragma mark - ==================================
@@ -45,6 +48,11 @@
     //-- NavigationBar right bar item
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(btnRefreshClicked:)];
     
+    //-- Set title for very first time on each launch until data downloaded.
+    self.title = @"Loading...";
+    
+
+    
     //-- Fetch JSON data from url
     [self fetchDataFromJSONFile];
 }
@@ -67,6 +75,10 @@
 #pragma mark ==================================
 
 - (void)fetchDataFromJSONFile {
+    
+    //-- To show the network indicator until the process is running.
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
     //-- Search Query preparation
     NSCharacterSet *expectedCharSet = [NSCharacterSet URLQueryAllowedCharacterSet];
     NSString *urlString = [JSON_FILE_URL stringByAddingPercentEncodingWithAllowedCharacters:expectedCharSet];
@@ -80,6 +92,11 @@
     //-- Make a web-service call to fetch a data from predefined url request.
     
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue new] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //-- To hide the network indicator once the response is availble.
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            [_refreshController endRefreshing];
+        });
         if (((NSHTTPURLResponse *)response).statusCode == 200) {
             if (data != nil) {
                 //-- As becuase downaloded data contains special characters first of all we have to conver it into String format.
@@ -95,19 +112,31 @@
                     
                     //-- Display an error if you get at the time of converting a JSON data to an object.
                     if (error != nil) {
-                        NSLog(@"JSON Parsing Error due to : %@", [error localizedDescription]);
+                       // NSLog(@"JSON Parsing Error due to : %@", [error localizedDescription]);
+                        self.title = @"";
+                        [appDelegate displayAnAlertWith:@"Alert !!" andMessage:[NSString stringWithFormat:@"JSON Parsing Error due to : %@", [error localizedDescription]]];
                     } else {
                         NSLog(@"%@", [dictInfo description]);
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            self.title = dictInfo[@"title"];
+                            _arrFeeds = [NSArray arrayWithArray:dictInfo[@"rows"]];
+                            if (_arrFeeds != nil) {
+                                self.tableView.hidden = NO;
+                                [self.tableView reloadData];
+                            } else {
+                                self.tableView.hidden = YES;
+                            }
+                        });
                     }
                 } else {
-                    NSLog(@"An error while encoding data or string conents.");
-                }
+                    self.title = @"";
+                    [appDelegate displayAnAlertWith:@"Alert !!" andMessage:@"An error while encoding data or string conents."];                }
             } else {
-                NSLog(@"No data available to download or an error while downloading a data.");
+                [appDelegate displayAnAlertWith:@"Alert !!" andMessage:@"No data available to download or an error while downloading a data."];
             }
         } else {
-            NSLog(@"%@", [connectionError localizedDescription]);
-        }
+            self.title = @"";
+            [appDelegate displayAnAlertWith:@"Alert !!" andMessage:[connectionError localizedDescription]];        }
     }];
 }
 
@@ -127,25 +156,100 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (_arrFacts != nil) {
-        return _arrFacts.count;
+    if (_arrFeeds != nil) {
+        return _arrFeeds.count;
     } else {
-        return 10;
+        return 0;
     }
 
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
+    //-- Reuse the cell with the identifier.
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"];
     if (cell == nil) {
-        
+        //-- Configure the cell if not available
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"reuseIdentifier"];
+        cell.detailTextLabel.numberOfLines = 0;
+        cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+        cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
     }
-    // Configure the cell...
-    
-    return cell;
+    @try {
+        //-- To fetch the object based on index
+        NSDictionary *dictFactInfo = [_arrFeeds objectAtIndex:indexPath.row];
+        
+        //-- To display the title text
+        NSString *title = [NSString stringWithFormat:@"%@",dictFactInfo[@"title"]];
+        if ([[title trim] length] > 0) {
+            cell.textLabel.text = title;
+        } else {
+            cell.textLabel.text = @"No title available for this row.";
+        }
+        
+        //-- To display the description text
+        NSString *description = [NSString stringWithFormat:@"%@",dictFactInfo[@"description"]];
+        if ([[description trim] length] > 0) {
+            cell.detailTextLabel.text = description;
+        } else {
+            cell.detailTextLabel.text = @"No description available for this row.";
+        }
+        
+        //-- To display the image in asynchronously manner to avoid the user interaction conflict.
+        NSString *imagurl = [NSString stringWithFormat:@"%@",dictFactInfo[@"imageHref"]];
+        if ([[imagurl trim] length] > 0) {
+            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imagurl] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                if (image != nil) {
+                    //-- Resize the image and display it in the row.
+                    cell.imageView.image = [self imageWithImage:image scaledToSize:CGSizeMake(60.0, 60.0)];
+
+                } else {
+                    cell.imageView.image = nil;
+                }
+            }];
+        } else {
+            cell.imageView.image = nil;
+        }
+    } @catch (NSException *exception) {
+        NSLog(@"An exception occurred due to %@", exception.reason);
+    } @finally {
+        return cell;
+    }
+
 }
 
+#pragma mark - ==================================
+#pragma mark User-defined methods
+#pragma mark ==================================
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    
+    CGSize size = image.size;
+    
+    CGFloat widthRatio  = newSize.width  / image.size.width;
+    CGFloat heightRatio = newSize.height / image.size.height;
+    
+    // Figure out what our orientation is, and use that to form the rectangle
+    if(widthRatio > heightRatio) {
+        newSize = CGSizeMake(size.width * heightRatio, size.height * heightRatio);
+    } else {
+        newSize = CGSizeMake(size.width * widthRatio,  size.height * widthRatio);
+    }
+    
+    // This is the rect that we've calculated out and this is what is actually used below
+    CGRect rect = CGRectMake(0, 0, newSize.width, newSize.height);
+    
+    // Actually do the resizing to the rect using the ImageContext stuff
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:rect];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
 
 /*
 // Override to support conditional editing of the table view.

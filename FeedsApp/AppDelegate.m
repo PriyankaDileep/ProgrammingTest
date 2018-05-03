@@ -54,5 +54,18 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-
+- (void)displayAnAlertWith:(NSString *)title andMessage:(NSString *)message {
+    if (floor(NSFoundationVersionNumber) >= NSFoundationVersionNumber_iOS_9_x_Max) {
+        UIAlertController *alertController = [[UIAlertController alloc] init];
+        [alertController setTitle:title];
+        [alertController setMessage:message];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [alertController dismissViewControllerAnimated:TRUE completion:nil];
+        }]];
+        [self.window.rootViewController presentViewController:alertController animated:TRUE completion:nil];
+    } else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    }
+}
 @end
