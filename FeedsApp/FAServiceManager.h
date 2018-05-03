@@ -17,7 +17,7 @@
 @end
 
 @interface FAServiceManager : NSObject
-@property(strong, nonatomic) NSArray *arrFacts;
+@property(strong, nonatomic) NSArray *arrFeeds;
 @property(assign, nonatomic) id<FeedsControllerDeleagte> delegate;
 - (void)fetchDataFromJSONFile;
 @end
