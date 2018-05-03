@@ -17,6 +17,10 @@
 		72B6D8EB209ACAD100CFF270 /* FeedsAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D8EA209ACAD100CFF270 /* FeedsAppUITests.m */; };
 		72B6D906209AF9C000CFF270 /* FAListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D905209AF9C000CFF270 /* FAListViewController.m */; };
 		72B6D90D209B132000CFF270 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D90C209B132000CFF270 /* NSString+Additions.m */; };
+		72B6D910209B2E2800CFF270 /* FAFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D90F209B2E2800CFF270 /* FAFeed.m */; };
+		72B6D913209B2F0300CFF270 /* FATableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D912209B2F0300CFF270 /* FATableViewDataSource.m */; };
+		72B6D916209B2F1700CFF270 /* FATableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D915209B2F1700CFF270 /* FATableViewDelegate.m */; };
+		72B6D919209B2FA900CFF270 /* FAServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D918209B2FA900CFF270 /* FAServiceManager.m */; };
 		90EA1C749A26C654107A1442 /* libPods-FeedsApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E012ECA7D674C204B306CB0F /* libPods-FeedsApp.a */; };
 		E5C8956B2FB146D6EF423AA7 /* libPods-FeedsAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBEDB65E063E632EAEEE5765 /* libPods-FeedsAppTests.a */; };
 /* End PBXBuildFile section */
@@ -61,6 +65,14 @@
 		72B6D905209AF9C000CFF270 /* FAListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAListViewController.m; sourceTree = "<group>"; };
 		72B6D90B209B132000CFF270 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
 		72B6D90C209B132000CFF270 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
+		72B6D90E209B2E2800CFF270 /* FAFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAFeed.h; sourceTree = "<group>"; };
+		72B6D90F209B2E2800CFF270 /* FAFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAFeed.m; sourceTree = "<group>"; };
+		72B6D911209B2F0300CFF270 /* FATableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FATableViewDataSource.h; sourceTree = "<group>"; };
+		72B6D912209B2F0300CFF270 /* FATableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FATableViewDataSource.m; sourceTree = "<group>"; };
+		72B6D914209B2F1700CFF270 /* FATableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FATableViewDelegate.h; sourceTree = "<group>"; };
+		72B6D915209B2F1700CFF270 /* FATableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FATableViewDelegate.m; sourceTree = "<group>"; };
+		72B6D917209B2FA900CFF270 /* FAServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAServiceManager.h; sourceTree = "<group>"; };
+		72B6D918209B2FA900CFF270 /* FAServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAServiceManager.m; sourceTree = "<group>"; };
 		9EB9C78E073E40461283BC15 /* libPods-FeedsAppUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FeedsAppUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C788A160C732B2E362749D0B /* Pods-FeedsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedsApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeedsApp/Pods-FeedsApp.release.xcconfig"; sourceTree = "<group>"; };
 		DF9C08F2DD53313598E10461 /* Pods-FeedsAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeedsAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FeedsAppTests/Pods-FeedsAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -183,6 +195,12 @@
 		72B6D8FA209ACE4700CFF270 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				72B6D90E209B2E2800CFF270 /* FAFeed.h */,
+				72B6D90F209B2E2800CFF270 /* FAFeed.m */,
+				72B6D911209B2F0300CFF270 /* FATableViewDataSource.h */,
+				72B6D912209B2F0300CFF270 /* FATableViewDataSource.m */,
+				72B6D914209B2F1700CFF270 /* FATableViewDelegate.h */,
+				72B6D915209B2F1700CFF270 /* FATableViewDelegate.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -198,6 +216,8 @@
 		72B6D8FC209ACE6F00CFF270 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				72B6D917209B2FA900CFF270 /* FAServiceManager.h */,
+				72B6D918209B2FA900CFF270 /* FAServiceManager.m */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -455,10 +475,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72B6D919209B2FA900CFF270 /* FAServiceManager.m in Sources */,
 				72B6D8CA209ACAD100CFF270 /* AppDelegate.m in Sources */,
 				72B6D90D209B132000CFF270 /* NSString+Additions.m in Sources */,
+				72B6D910209B2E2800CFF270 /* FAFeed.m in Sources */,
 				72B6D8C7209ACAD100CFF270 /* main.m in Sources */,
 				72B6D906209AF9C000CFF270 /* FAListViewController.m in Sources */,
+				72B6D916209B2F1700CFF270 /* FATableViewDelegate.m in Sources */,
+				72B6D913209B2F0300CFF270 /* FATableViewDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
