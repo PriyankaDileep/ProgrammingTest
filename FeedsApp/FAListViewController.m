@@ -78,6 +78,7 @@
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:url];
     
     //-- Make a web-service call to fetch a data from predefined url request.
+    
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue new] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         if (((NSHTTPURLResponse *)response).statusCode == 200) {
             if (data != nil) {
