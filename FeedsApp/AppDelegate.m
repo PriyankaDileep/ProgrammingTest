@@ -19,12 +19,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     FAListViewController *obj_falistViewController = [[FAListViewController alloc] init];
+    
+    //-- To create an instance of navigation controller to make it as an intiate view controller of window
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:obj_falistViewController];
+    
+    //-- To create an instance of a window for an application
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    //-- Initialize a navigation controller as a key viewcontroller to a window
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     return YES;
-
+    
 }
 
 
