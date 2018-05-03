@@ -14,6 +14,7 @@
 		72B6D8D5209ACAD100CFF270 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72B6D8D3209ACAD100CFF270 /* LaunchScreen.storyboard */; };
 		72B6D8E0209ACAD100CFF270 /* FeedsAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D8DF209ACAD100CFF270 /* FeedsAppTests.m */; };
 		72B6D8EB209ACAD100CFF270 /* FeedsAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D8EA209ACAD100CFF270 /* FeedsAppUITests.m */; };
+		72B6D906209AF9C000CFF270 /* FAListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B6D905209AF9C000CFF270 /* FAListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,9 @@
 		72B6D8E6209ACAD100CFF270 /* FeedsAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedsAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		72B6D8EA209ACAD100CFF270 /* FeedsAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedsAppUITests.m; sourceTree = "<group>"; };
 		72B6D8EC209ACAD100CFF270 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		72B6D900209AD01000CFF270 /* FAConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FAConstants.h; sourceTree = "<group>"; };
+		72B6D904209AF9C000CFF270 /* FAListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAListViewController.h; sourceTree = "<group>"; };
+		72B6D905209AF9C000CFF270 /* FAListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +153,8 @@
 		72B6D8F9209ACE3000CFF270 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				72B6D904209AF9C000CFF270 /* FAListViewController.h */,
+				72B6D905209AF9C000CFF270 /* FAListViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -163,6 +169,7 @@
 		72B6D8FB209ACE6800CFF270 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				72B6D900209AD01000CFF270 /* FAConstants.h */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -335,6 +342,7 @@
 			files = (
 				72B6D8CA209ACAD100CFF270 /* AppDelegate.m in Sources */,
 				72B6D8C7209ACAD100CFF270 /* main.m in Sources */,
+				72B6D906209AF9C000CFF270 /* FAListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

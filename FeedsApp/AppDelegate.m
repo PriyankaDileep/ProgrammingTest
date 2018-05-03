@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "FAListViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +18,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    FAListViewController *obj_falistViewController = [[FAListViewController alloc] init];
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:obj_falistViewController];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = self.navigationController;
+    [self.window makeKeyAndVisible];
     return YES;
+
 }
 
 
