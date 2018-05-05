@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "FAServiceManager.h"
 
 @interface FATableViewDataSource : NSObject
+@property(strong, nonatomic) FAServiceManager *fAServiceManager;
+- (id)initTableView:(UITableView *)tableView withServiceManger:(FAServiceManager *)service;
 
 @end
