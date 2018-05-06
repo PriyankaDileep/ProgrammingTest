@@ -69,7 +69,7 @@
     _faTableviewDatasource = [[FATableViewDataSource alloc]initTableView:self.tableView withServiceManger:self.faServiceManager];
     //-- Initiate the delegate for table view & integrate delegate methods with the help of FAServiceManager
     _faTableviewDelegate = [[FATableViewDelegate alloc]initTableView:self.tableView withServiceManger:self.faServiceManager];
-    //[self.faServiceManager fetchDataFromJSONFile];
+    [self.faServiceManager fetchDataFromJSONFile];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
