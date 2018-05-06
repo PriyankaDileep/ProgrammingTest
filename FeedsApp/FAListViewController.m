@@ -86,7 +86,7 @@
 }
 
 #pragma mark - ==================================
-#pragma mark FactController Delegate methods
+#pragma mark FAServiceManager Delegate methods
 #pragma mark ==================================
 
 //-- A delegate method called after the un-successful execution by FAServiceManager
