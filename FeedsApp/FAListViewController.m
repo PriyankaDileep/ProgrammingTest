@@ -13,6 +13,7 @@
 #import "FATableViewDelegate.h"
 #import "FAServiceManager.h"
 
+//-- Private declaration properties
 @interface FAListViewController ()
 @property(strong, nonatomic) UIRefreshControl *refreshController;
 @property(strong, nonatomic) FATableViewDataSource *faTableviewDatasource;
@@ -40,6 +41,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(btnRefreshClicked:)];
     
     //-- Tableview's row height & estimated row height
+    // [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"reuseIdentifier"];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     if ([[UIDevice currentDevice].model isEqualToString:@"iPad"] || [[UIDevice currentDevice].model isEqualToString:@"ipad"]) {
         self.tableView.estimatedRowHeight = 110.0;
@@ -57,16 +59,17 @@
     }
     [_refreshController addTarget:self action:@selector(pullToRefresh:) forControlEvents:UIControlEventValueChanged];
     
-    //-- Intiate the controller
+    //-- Intiate the service
     FAServiceManager *obj_faServiceManager = [[FAServiceManager alloc] init];
     obj_faServiceManager.delegate = (id)self;
-    self.faServiceManager = obj_faServiceManager; //-- Assign a controller
+    self.faServiceManager = obj_faServiceManager; //-- Assign service
     obj_faServiceManager = nil;
     
-    //-- Initiate the datasource for table view & integrate datesource methods with the help of FactController
+    //-- Initiate the datasource for table view & integrate datesource methods with the help of FAServiceManager
     _faTableviewDatasource = [[FATableViewDataSource alloc]initTableView:self.tableView withServiceManger:self.faServiceManager];
-    //-- Initiate the delegate for table view & integrate delegate methods with the help of FactController
+    //-- Initiate the delegate for table view & integrate delegate methods with the help of FAServiceManager
     _faTableviewDelegate = [[FATableViewDelegate alloc]initTableView:self.tableView withServiceManger:self.faServiceManager];
+    //[self.faServiceManager fetchDataFromJSONFile];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -86,6 +89,7 @@
 #pragma mark FactController Delegate methods
 #pragma mark ==================================
 
+//-- A delegate method called after the un-successful execution by FAServiceManager
 - (void)connectionDidReceiveFailure:(NSString *)error {
     self.title = @"";
     [appDelegate displayAnAlertWith:@"Alert !!" andMessage:error];
@@ -96,6 +100,7 @@
     });
 }
 
+//-- A delegate method called after the successful execution by FAServiceManager
 - (void)connectionDidFinishLoading:(NSDictionary *)dictResponseInfo {
     self.title = dictResponseInfo[@"title"];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -115,6 +120,7 @@
 #pragma mark Controls click events
 #pragma mark ==================================
 
+//-- Click event for top right bar button item
 - (IBAction)btnRefreshClicked:(id)sender {
     dispatch_async(dispatch_get_main_queue(), ^{
         //-- To show the network indicator until the process is running.
@@ -124,6 +130,7 @@
     [self.faServiceManager fetchDataFromJSONFile];
 }
 
+//-- Pull to refresh event by pulling down the tableview
 - (IBAction)pullToRefresh:(id)sender {
     [_refreshController beginRefreshing];
     dispatch_async(dispatch_get_main_queue(), ^{

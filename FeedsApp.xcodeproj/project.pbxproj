@@ -113,6 +113,11 @@
 			isa = PBXGroup;
 			children = (
 				72B6D8C4209ACAD100CFF270 /* FeedsApp */,
+				72B6D8F8209ACDF300CFF270 /* AppDelegate */,
+				72B6D8FC209ACE6F00CFF270 /* Manager */,
+				72B6D8FB209ACE6800CFF270 /* Utils */,
+				72B6D8FA209ACE4700CFF270 /* Model */,
+				72B6D8F9209ACE3000CFF270 /* Controllers */,
 				72B6D8FF209ACEF000CFF270 /* View */,
 				72B6D907209B125200CFF270 /* CustomControls */,
 				72B6D8FE209ACE9700CFF270 /* Resources */,
@@ -137,12 +142,6 @@
 		72B6D8C4209ACAD100CFF270 /* FeedsApp */ = {
 			isa = PBXGroup;
 			children = (
-				72B6D8F8209ACDF300CFF270 /* AppDelegate */,
-				72B6D8FD209ACE7F00CFF270 /* Parser */,
-				72B6D8FC209ACE6F00CFF270 /* Manager */,
-				72B6D8FB209ACE6800CFF270 /* Utils */,
-				72B6D8FA209ACE4700CFF270 /* Model */,
-				72B6D8F9209ACE3000CFF270 /* Controllers */,
 				72B6D8C5209ACAD100CFF270 /* Supporting Files */,
 			);
 			path = FeedsApp;
@@ -181,6 +180,7 @@
 				72B6D8C9209ACAD100CFF270 /* AppDelegate.m */,
 			);
 			name = AppDelegate;
+			path = FeedsApp;
 			sourceTree = "<group>";
 		};
 		72B6D8F9209ACE3000CFF270 /* Controllers */ = {
@@ -190,6 +190,7 @@
 				72B6D905209AF9C000CFF270 /* FAListViewController.m */,
 			);
 			name = Controllers;
+			path = FeedsApp;
 			sourceTree = "<group>";
 		};
 		72B6D8FA209ACE4700CFF270 /* Model */ = {
@@ -203,6 +204,7 @@
 				72B6D915209B2F1700CFF270 /* FATableViewDelegate.m */,
 			);
 			name = Model;
+			path = FeedsApp;
 			sourceTree = "<group>";
 		};
 		72B6D8FB209ACE6800CFF270 /* Utils */ = {
@@ -211,6 +213,7 @@
 				72B6D900209AD01000CFF270 /* FAConstants.h */,
 			);
 			name = Utils;
+			path = FeedsApp;
 			sourceTree = "<group>";
 		};
 		72B6D8FC209ACE6F00CFF270 /* Manager */ = {
@@ -220,13 +223,7 @@
 				72B6D918209B2FA900CFF270 /* FAServiceManager.m */,
 			);
 			name = Manager;
-			sourceTree = "<group>";
-		};
-		72B6D8FD209ACE7F00CFF270 /* Parser */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Parser;
+			path = FeedsApp;
 			sourceTree = "<group>";
 		};
 		72B6D8FE209ACE9700CFF270 /* Resources */ = {

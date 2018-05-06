@@ -23,6 +23,7 @@
     if (self == [super init]) {
         _fAServiceManager = service;
         tableView.delegate = self;
+        
     }
     return self;
 }

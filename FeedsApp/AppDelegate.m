@@ -10,14 +10,14 @@
 #import "FAListViewController.h"
 
 @interface AppDelegate ()
-
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    //-- Initalize a rootview controller for navigation controller
     FAListViewController *obj_falistViewController = [[FAListViewController alloc] init];
     
     //-- To create an instance of navigation controller to make it as an intiate view controller of window

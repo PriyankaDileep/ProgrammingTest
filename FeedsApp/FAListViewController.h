@@ -10,6 +10,4 @@
 
 
 @interface FAListViewController : UITableViewController
-
-
 @end

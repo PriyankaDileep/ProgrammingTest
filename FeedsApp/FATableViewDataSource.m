@@ -37,8 +37,10 @@
 #pragma mark Table view data source
 #pragma mark ==================================
 
+//-- A method to display contents in a tableview's cell.
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     //-- Reuse the cell with the identifier.
+    // [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"reuseIdentifier"];
     static NSString *reuseIdentifier = @"reuseIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
@@ -86,6 +88,7 @@
                     } else {
                         weakCell.imageView.image = nil;
                     }
+                    //-- To size the cell as after loading image asynchronously
                     [weakCell layoutSubviews];
                     [weakCell setNeedsLayout];
                 }];
@@ -93,6 +96,7 @@
                 cell.imageView.image = nil;
             }
         } else {
+            //-- Static text while there's nothing to display in table's list.
             cell.detailTextLabel.text = @"Click on Refresh icon or \"Pull to Refresh\" to fetch the data from server.";
         }
     } @catch (NSException *exception) {
@@ -102,6 +106,7 @@
     }
 }
 
+//-- A method to deliver the number of rows in a single section.
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (_fAServiceManager.arrFeeds.count > 0) {
         return _fAServiceManager.arrFeeds.count;
@@ -114,6 +119,7 @@
 #pragma mark User-defined methods
 #pragma mark ==================================
 
+//-- A method to resize the image before display in a tableview' cell
 - (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
     //UIGraphicsBeginImageContext(newSize);
     // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
