@@ -40,10 +40,10 @@
         [obj_faServiceManager fetchDataFromJSONFile];
     }];
 }
+
 #pragma mark - ==================================
 #pragma mark - View loading tests
 #pragma mark ==================================
-
 -(void)testThatTableViewLoads
 {
     XCTAssertNotNil(self.obj_faListViewController.tableView, @"TableView not initiated");
@@ -52,8 +52,6 @@
 #pragma mark - ==================================
 #pragma mark - UITableView tests
 #pragma mark ==================================
-
-
 - (void)testThatViewConformsToUITableViewDataSource
 {
     XCTAssertTrue([self.obj_faListViewController conformsToProtocol:@protocol(UITableViewDataSource) ], @"View does not conform to UITableView datasource protocol");
